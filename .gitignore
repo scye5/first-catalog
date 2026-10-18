@@ -1,0 +1,29 @@
+# Secrets and machine-specific configuration
+.env
+.env.*
+!.env.example
+proxy.conf
+
+# Catalog data and database backups
+data/
+FIRST.csv
+backups/
+*.dump
+*.sql.gz
+first-catalog-images.tar
+
+# Local Python environment and generated files
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

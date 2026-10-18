@@ -2,7 +2,7 @@
 
 Run a FIRST astronomical catalog database and a Python REST API with Docker Compose. PostgreSQL stores the CSV data; pgSphere supports indexed spherical cone searches; FastAPI exposes name and position searches.
 
-This guide matches the project files in `/home/scye/first-catalog`. Commands below assume the project is in `~/first-catalog`; substitute your own directory when deploying elsewhere. Run Linux commands in WSL Ubuntu unless a block is explicitly labeled PowerShell. This README does not perform any installation itself.
+Commands below assume the project is in `~/first-catalog`; substitute your own project directory when deploying elsewhere. Run Linux commands in WSL Ubuntu unless a block is explicitly labeled PowerShell. This README does not perform any installation itself.
 
 ## Contents
 
@@ -75,7 +75,7 @@ The distribution should report version `2`. If needed:
 wsl --set-version Ubuntu-24.04 2
 ```
 
-An existing supported Ubuntu distribution can also be used. The installation we debugged used Ubuntu 26.04 (`resolute`). Do not replace its repository codename with `noble`; use the codename of the installed system.
+An existing supported Ubuntu distribution can also be used. Always use the repository codename of the installed system rather than copying a codename from another Ubuntu release.
 
 Check inside Ubuntu:
 
@@ -119,7 +119,7 @@ If switching from Ubuntu's Docker packages, first check for conflicting packages
 dpkg -l docker.io docker-compose-v2 docker-compose docker-buildx containerd runc
 ```
 
-Remove installed conflicting packages before installing Docker CE. On a machine with existing workloads, stop them deliberately before changing engines. The Compose conflict encountered in this project was caused by leaving `docker-compose-v2` installed.
+Remove installed conflicting packages before installing Docker CE. On a machine with existing workloads, stop them deliberately before changing engines. Leaving `docker-compose-v2` installed can cause a file conflict with Docker CE’s Compose plugin.
 
 ```bash
 sudo apt remove docker.io docker-compose-v2 docker-compose docker-buildx containerd runc
@@ -172,7 +172,7 @@ sudo docker run --rm hello-world
 
 Skip this section on a machine with working direct internet access. Proxy addresses are machine-specific configuration; do not bake them into the application images.
 
-The working proxy in this project's WSL environment was `http://127.0.0.1:7897`. Use that address only if your proxy actually listens there and WSL can reach it. Other WSL networking configurations may require the Windows host's reachable IP and a proxy configured to accept those connections.
+The commands below use `http://127.0.0.1:7897` as an example proxy address. Replace the address and port with your own proxy settings, and confirm WSL can reach it. Other WSL networking configurations may require the Windows host's reachable IP and a proxy configured to accept those connections.
 
 ### Terminal and build-client proxy
 
